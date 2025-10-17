@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประวัติ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sub-page-container">
+        <header class="sub-page-header">
+            <a href="dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+            <h1>ประวัติธุรกรรม</h1>
+            <div class="header-placeholder"></div>
+        </header>
+
+        <div class="history-tabs">
+            <button class="history-tab-btn active" onclick="openTab('deposit')">ประวัติฝาก</button>
+            <button class="history-tab-btn" onclick="openTab('withdrawal')">ประวัติถอน</button>
+        </div>
+
+        <main class="content-wrapper">
+            <div id="deposit" class="history-content active">
+                <p class="empty-history-message">ไม่มีประวัติการฝากเงิน</p>
+            </div>
+
+            <div id="withdrawal" class="history-content">
+                <p class="empty-history-message">ไม่มีประวัติการถอนเงิน</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            document.querySelectorAll('.history-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.history-tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            document.querySelector(`button[onclick="openTab('${tabName}')"]`).classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash === 'deposit' || hash === 'withdrawal') {
+                openTab(hash);
+            }
+        });
+    </script>
+</body>
+</html>

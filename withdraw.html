@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ถอนเงิน</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sub-page-container">
+        <header class="sub-page-header">
+            <a href="dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+            <h1>ถอนเงิน</h1>
+            <div class="header-placeholder"></div>
+        </header>
+
+        <main class="content-wrapper">
+            <div class="withdraw-balance-box">
+                <p class="balance-label">ยอดเงินที่ถอนได้</p>
+                <p id="balance-amount" class="balance-amount">0.00</p>
+            </div>
+
+            <form id="withdraw-form" class="withdraw-form">
+                <div class="form-group">
+                    <label for="amount">ระบุจำนวนเงินที่ต้องการถอน</label>
+                    <input type="number" id="amount" class="form-input" placeholder="0.00" required>
+                </div>
+                <button type="submit" class="submit-btn">ยืนยันการถอน</button>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userJSON = localStorage.getItem('winlaneUser');
+            if (!userJSON) {
+                window.location.href = 'login.html';
+                return;
+            }
+            const userAccount = JSON.parse(userJSON);
+            const balanceDisplay = document.getElementById('balance-amount');
+            balanceDisplay.innerText = userAccount.balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            
+            document.getElementById('withdraw-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const amountInput = document.getElementById('amount');
+                const withdrawAmount = parseFloat(amountInput.value);
+
+                if (isNaN(withdrawAmount) || withdrawAmount <= 0) {
+                    alert('กรุณาระบุจำนวนเงินที่ถูกต้อง');
+                    return;
+                }
+
+                if (withdrawAmount > userAccount.balance) {
+                    alert('ยอดเงินคงเหลือของคุณไม่เพียงพอ');
+                    return;
+                }
+
+                userAccount.balance -= withdrawAmount;
+                localStorage.setItem('winlaneUser', JSON.stringify(userAccount));
+                
+                alert(`ทำรายการถอนสำเร็จ ${withdrawAmount.toLocaleString('en-US')} บาท!\nยอดเงินคงเหลือ ฿ ${userAccount.balance.toLocaleString('en-US')}`);
+                window.location.href = 'dashboard.html';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ฝากเงิน</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sub-page-container">
+        <header class="sub-page-header">
+            <a href="dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+            <h1>ช่องทางการฝากเงิน</h1>
+            <div class="header-placeholder"></div>
+        </header>
+
+        <div class="history-tabs">
+            <button class="history-tab-btn active" onclick="openDepositTab('bank')">
+                <i class="fas fa-university"></i> ธนาคาร
+            </button>
+            <button class="history-tab-btn" onclick="openDepositTab('wallet')">
+                <i class="fas fa-wallet"></i> ทรูวอลเล็ท
+            </button>
+        </div>
+
+        <main class="content-wrapper">
+            <div id="bank" class="deposit-content active">
+                <div class="deposit-info-box">
+                    <div class="bank-logo-wrapper">
+                        <img src="bank-ksb.png" alt="Kasikorn Bank Logo" class="bank-logo">
+                    </div>
+                    <p class="account-label">ชื่อบัญชี</p>
+                    <p class="account-name">บริษัท วินเลน จำกัด</p>
+                    
+                    <p class="account-label">เลขที่บัญชี</p>
+                    <div class="account-number-wrapper">
+                        <span id="bank-account-number">123-4-56789-0</span>
+                        <button class="copy-btn-small" onclick="copyToClipboard('bank-account-number')">
+                            <i class="far fa-copy"></i> คัดลอก
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="wallet" class="deposit-content">
+                 <div class="deposit-info-box">
+                    <div class="bank-logo-wrapper">
+                         <img src="true.jpg" alt="TrueMoney Wallet Logo" class="bank-logo">
+                    </div>
+                    <p class="account-label">ชื่อบัญชี</p>
+                    <p class="account-name">นาย วินเลน ชนะแน่</p>
+                    
+                    <p class="account-label">เบอร์วอลเล็ท</p>
+                    <div class="account-number-wrapper">
+                        <span id="wallet-number">081-234-5678</span>
+                        <button class="copy-btn-small" onclick="copyToClipboard('wallet-number')">
+                            <i class="far fa-copy"></i> คัดลอก
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="deposit-note">
+                * กรุณาใช้บัญชีที่สมัครไว้โอนเงินเข้ามาเท่านั้น<br>
+                * ยอดจะเข้าอัตโนมัติภายใน 1 นาที
+            </p>
+        </main>
+    </div>
+
+    <script>
+        function openDepositTab(tabName) {
+            document.querySelectorAll('.deposit-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.history-tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            document.querySelector(`button[onclick="openDepositTab('${tabName}')"]`).classList.add('active');
+        }
+
+        function copyToClipboard(elementId) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy.replace(/-/g, '')).then(() => {
+                alert('คัดลอกข้อมูลแล้ว!');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ - WINLANE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <h1 class="logo">WINLANE</h1>
+            <p class="subtitle">เข้าสู่ระบบ</p>
+        </div>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="phone">เบอร์โทรศัพท์มือถือ</label>
+                <input type="tel" id="phone" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="password">รหัสผ่าน</label>
+                <input type="password" id="password" class="form-input" required>
+            </div>
+            <button type="submit" class="submit-btn">เข้าสู่ระบบ</button>
+        </form>
+        <p class="bottom-link">
+            ยังไม่มีบัญชี? <a href="index.html">สมัครสมาชิกที่นี่</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const phone = document.getElementById('phone').value;
+
+            const userAccount = {
+                username: phone,
+                balance: 0, // <-- ปรับยอดเงินเริ่มต้นเป็น 0
+                loggedIn: true
+            };
+            localStorage.setItem('winlaneUser', JSON.stringify(userAccount));
+            alert('เข้าสู่ระบบสำเร็จ!');
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>
+p

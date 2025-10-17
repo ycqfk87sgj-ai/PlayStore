@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap');
+
+/* --- General & Basic Styles --- */
+body { margin: 0; font-family: 'Sarabun', sans-serif; color: #ffffff; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding: 20px; box-sizing: border-box; background-color: #121212; }
+a { text-decoration: none; }
+
+/* --- Register & Login Page Styles --- */
+.auth-container { width: 100%; max-width: 400px; background-color: #1E1E1E; border-radius: 16px; padding: 32px; border: 1px solid #333; align-self: center; }
+.auth-header { text-align: center; margin-bottom: 24px; }
+.auth-header .logo { font-size: 28px; font-weight: 700; color: #7b4dff; }
+.auth-header .subtitle { font-size: 14px; color: #a0a0a0; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 14px; color: #a0a0a0; margin-bottom: 8px; }
+.form-input { width: 100%; box-sizing: border-box; background-color: #121212; border: 1px solid #333; border-radius: 10px; padding: 12px 16px; color: #f0f0f0; font-size: 16px; }
+.submit-btn { width: 100%; padding: 14px; background-color: #7b4dff; border: none; border-radius: 10px; color: #ffffff; font-size: 18px; font-weight: 700; cursor: pointer; }
+.bottom-link { text-align: center; margin-top: 24px; font-size: 14px; color: #a0a0a0; }
+.bottom-link a { color: #7b4dff; font-weight: 700; }
+
+/* --- Dashboard Page Styles --- */
+.dashboard-container { width: 100%; max-width: 400px; background-color: #2c004d; border-radius: 10px; padding: 20px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; gap: 25px; }
+.balance-section { display: flex; justify-content: center; align-items: center; }
+.balance-circle { width: 180px; height: 180px; border-radius: 50%; background-color: #0d001a; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 0 20px 5px rgba(170, 0, 255, 0.7); text-align: center; }
+.balance-label { margin: 0; font-size: 1.1em; color: #cccccc; }
+.balance-amount { margin: 5px 0 0 0; font-size: 2.5em; font-weight: bold; }
+.action-buttons { display: flex; justify-content: space-around; gap: 15px; }
+.btn { flex: 1; padding: 15px 10px; border: none; border-radius: 8px; font-size: 1.1em; font-weight: bold; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-deposit { background-color: #28a745; box-shadow: 0 0 10px rgba(40, 167, 69, 0.7); }
+.btn-withdraw { background-color: #dc3545; box-shadow: 0 0 10px rgba(220, 53, 69, 0.7); }
+.play-game-section { display: flex; justify-content: center; margin-top: 10px; }
+.play-game-box { background-color: transparent; border: 2px solid #aa00ff; border-image: linear-gradient(to right, #aa00ff, #ff00ea) 1; padding: 15px 40px; font-size: 1.5em; font-weight: bold; color: #ff00ea; text-shadow: 0 0 10px rgba(255, 0, 234, 0.7); letter-spacing: 2px; }
+.nav-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+.nav-item { background-color: #3b0066; border: none; border-radius: 8px; padding: 15px 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; font-size: 0.9em; cursor: pointer; text-align: center; gap: 5px; }
+.nav-item i { font-size: 1.8em; margin-bottom: 5px; color: #ffccff; }
+.login-helper { background-color: #3b0066; border-radius: 8px; padding: 15px; border: 1px solid #4f0088; }
+.helper-title { text-align: center; font-weight: bold; color: #ffccff; margin-bottom: 15px; }
+.credential-item { display: flex; justify-content: space-between; align-items: center; background-color: #2c004d; border-radius: 5px; padding: 10px; margin-bottom: 10px; }
+.credential-item:last-child { margin-bottom: 0; }
+.credential-info .label { color: #cccccc; font-size: 0.9em; margin-right: 8px; }
+.credential-info .value { font-weight: bold; font-family: monospace; font-size: 1.1em; }
+.copy-btn { background-color: #7b4dff; color: white; border: none; border-radius: 5px; padding: 8px 12px; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+
+/* --- Sub-Page Styles (Deposit, Withdraw, History) --- */
+.sub-page-container { width: 100%; max-width: 480px; display: flex; flex-direction: column; }
+.sub-page-header { display: flex; justify-content: space-between; align-items: center; padding: 15px; background-color: #1E1E1E; border-radius: 10px; margin-bottom: 20px; }
+.sub-page-header h1 { font-size: 1.2em; margin: 0; }
+.sub-page-header .back-btn { color: #fff; font-size: 1.2em; }
+.sub-page-header .header-placeholder { width: 20px; }
+.content-wrapper { padding: 0 10px; }
+.deposit-info-box { background-color: #1E1E1E; border-radius: 10px; padding: 20px; text-align: center; }
+.bank-logo-wrapper { height: 50px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
+.bank-logo { max-height: 100%; max-width: 150px; }
+.deposit-info-box .account-label { color: #a0a0a0; margin: 15px 0 5px 0; }
+.deposit-info-box .account-name { font-size: 1.1em; font-weight: bold; }
+.account-number-wrapper { background-color: #121212; border-radius: 8px; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
+.account-number-wrapper span { font-size: 1.4em; font-weight: bold; letter-spacing: 1px; }
+.copy-btn-small { background-color: #7b4dff; color: white; border:none; border-radius:5px; padding: 8px 12px; cursor:pointer; }
+.deposit-note { text-align: center; color: #a0a0a0; font-size: 0.9em; margin-top: 20px; line-height: 1.6; }
+.deposit-content { display: none; }
+.deposit-content.active { display: block; }
+.withdraw-balance-box { text-align: center; background-color: #1E1E1E; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+.withdraw-form { margin-top: 20px; }
+.history-tabs { display: flex; background-color: #1E1E1E; border-radius: 10px; padding: 5px; margin-bottom: 20px; }
+.history-tab-btn { flex: 1; background: none; border: none; color: #a0a0a0; padding: 10px; border-radius: 8px; font-family: 'Sarabun', sans-serif; font-size: 1em; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.history-tab-btn.active { background-color: #7b4dff; color: white; font-weight: bold; }
+.history-content { display: none; }
+.history-content.active { display: block; }
+.history-item { display: flex; align-items: center; justify-content: space-between; background-color: #1E1E1E; padding: 15px; border-radius: 10px; margin-bottom: 10px; }
+.history-details { display: flex; flex-direction: column; gap: 4px; }
+.history-type { font-weight: bold; }
+.history-date { font-size: 0.8em; color: #a0a0a0; }
+.history-amount { font-weight: bold; font-size: 1.1em; }
+.deposit-amount { color: #28a745; }
+.withdraw-amount { color: #dc3545; }
+.history-status { font-size: 0.9em; padding: 5px 10px; border-radius: 20px; font-weight: bold; }
+.status-success { background-color: #28a745; color: white; }
+.status-pending { background-color: #f59e0b; color: white; }
+.status-failed { background-color: #4a4a4a; color: #a0a0a0; }
+.empty-history-message { color: #a0a0a0; text-align: center; padding: 40px 20px; }

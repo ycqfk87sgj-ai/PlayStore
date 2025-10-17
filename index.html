@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมัครสมาชิก - WINLANE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <h1 class="logo">WINLANE</h1>
+            <p class="subtitle">สร้างบัญชีเพื่อเริ่มต้น</p>
+        </div>
+        <form id="register-form">
+            <div class="form-group">
+                <label for="phone">เบอร์โทรศัพท์มือถือ</label>
+                <input type="tel" id="phone" class="form-input" placeholder="กรอกเบอร์โทร 10 หลัก (สำหรับเข้าระบบ)" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">รหัสผ่าน</label>
+                <input type="password" id="password" class="form-input" placeholder="ตั้งรหัสผ่าน 6 ตัวขึ้นไป" required>
+            </div>
+
+            <div class="form-group">
+                <label for="full_name">ชื่อ - นามสกุล</label>
+                <input type="text" id="full_name" class="form-input" placeholder="กรอกชื่อ-นามสกุลให้ตรงกับบัญชี" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bank">ช่องทางรับเงิน</label>
+                <select id="bank" class="form-input" required>
+                    <option value="" disabled selected>-- เลือกธนาคาร หรือ วอลเล็ท --</option>
+                    <option value="truemoney">ทรูมันนี่วอลเล็ท (TrueMoney Wallet)</option>
+                    <option value="kbank">กสิกรไทย (KBank)</option>
+                    <option value="scb">ไทยพาณิชย์ (SCB)</option>
+                    <option value="bbl">กรุงเทพ (BBL)</option>
+                    <option value="ktb">กรุงไทย (KTB)</option>
+                    <option value="bay">กรุงศรีอยุธยา (Krungsri)</option>
+                    <option value="ttb">ทหารไทยธนชาต (ttb)</option>
+                    <option value="gsb">ออมสิน (GSB)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="account_number" id="account_number_label">เลขบัญชี</label>
+                <input type="text" id="account_number" class="form-input" placeholder="กรอกเลขบัญชีธนาคาร" required>
+            </div>
+
+            <button type="submit" class="submit-btn">ยืนยันการสมัคร</button>
+        </form>
+        <p class="bottom-link">
+            เป็นสมาชิกอยู่แล้ว? <a href="login.html">เข้าสู่ระบบที่นี่</a>
+        </p>
+    </div>
+
+    <script>
+        const bankSelect = document.getElementById('bank');
+        const accountNumberInput = document.getElementById('account_number');
+        const accountNumberLabel = document.getElementById('account_number_label');
+
+        // Script สำหรับเปลี่ยนคำอธิบายตามที่ผู้ใช้เลือก
+        bankSelect.addEventListener('change', function() {
+            if (this.value === 'truemoney') {
+                accountNumberLabel.innerText = 'เบอร์วอลเล็ท';
+                accountNumberInput.placeholder = 'กรอกเบอร์วอลเล็ท 10 หลัก';
+                accountNumberInput.type = 'tel'; // เปลี่ยนชนิด input เพื่อให้เหมาะกับเบอร์โทร
+            } else {
+                accountNumberLabel.innerText = 'เลขบัญชี';
+                accountNumberInput.placeholder = 'กรอกเลขบัญชีธนาคาร';
+                accountNumberInput.type = 'text';
+            }
+        });
+
+
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // ดึงข้อมูลจากฟอร์มทั้งหมด
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const fullName = document.getElementById('full_name').value;
+            const bank = document.getElementById('bank').value;
+            const accountNumber = document.getElementById('account_number').value;
+
+            // ตรวจสอบข้อมูลเบื้องต้น
+            if (!phone || !password || !fullName || !bank || !accountNumber) {
+                alert('กรุณากรอกข้อมูลให้ครบทุกช่อง');
+                return;
+            }
+
+            // จำลองการสร้างบัญชีและบันทึกลงใน Local Storage
+            const userAccount = {
+                username: phone,
+                fullName: fullName,
+                bankInfo: {
+                    bankName: bank,
+                    account: accountNumber
+                },
+                balance: 1500, // ให้เงินเริ่มต้น
+                loggedIn: true
+            };
+            localStorage.setItem('winlaneUser', JSON.stringify(userAccount));
+
+            alert('สมัครสมาชิกสำเร็จ! กำลังเข้าสู่ระบบ...');
+            window.location.href = 'dashboard.html'; // ไปยังหน้า Dashboard
+        });
+    </script>
+</body>
+</html>
+

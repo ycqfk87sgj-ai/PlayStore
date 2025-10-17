@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <div class="balance-section">
+            <div class="balance-circle">
+                <p class="balance-label">ยอดเงินที่ใช้ได้</p>
+                <p id="balance-amount" class="balance-amount">0.00</p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="deposit.html" class="btn btn-deposit"><i class="fas fa-arrow-down"></i> เติมเงิน</a>
+            <a href="withdraw.html" class="btn btn-withdraw"><i class="fas fa-arrow-up"></i> ถอนเงิน</a>
+        </div>
+
+        <div class="play-game-section">
+            <a href="https://m8geqpm2kpnf78dkfxq9ksg94ndx9weaoa39.com/login" class="play-game-box" target="_blank">
+                PLAY GAME
+            </a>
+        </div>
+
+        <div class="login-helper">
+            <div class="helper-title">ข้อมูลสำหรับเข้าเล่นเกม</div>
+            <div class="credential-item">
+                <div class="credential-info">
+                    <span class="label">Username:</span>
+                    <span id="username" class="value">Bjpmzbf151812210</span>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('username')">
+                    <i class="far fa-copy"></i> คัดลอก
+                </button>
+            </div>
+            <div class="credential-item">
+                <div class="credential-info">
+                    <span class="label">Password:</span>
+                    <span id="password" class="value">cosrhp6uk</span>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('password')">
+                    <i class="far fa-copy"></i> คัดลอก
+                </button>
+            </div>
+        </div>
+        
+        <div class="nav-grid">
+            <a href="history.html#deposit" class="nav-item">
+                <i class="fas fa-arrow-down"></i>
+                <span>ประวัติฝาก</span>
+            </a>
+            <a href="history.html#withdrawal" class="nav-item">
+                <i class="fas fa-arrow-up"></i>
+                <span>ประวัติถอน</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user-plus"></i>
+                <span>แนะนำ</span>
+            </a>
+             <a href="#" class="nav-item">
+                <i class="fas fa-headset"></i>
+                <span>ติดต่อ</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-key"></i>
+                <span>รหัสผ่าน</span>
+            </a>
+            <button id="logout-btn" class="nav-item">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>ออก</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userJSON = localStorage.getItem('winlaneUser');
+            if (!userJSON) {
+                window.location.href = 'login.html';
+                return;
+            }
+            const userAccount = JSON.parse(userJSON);
+            document.getElementById('balance-amount').innerText = userAccount.balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('logout-btn').addEventListener('click', function() {
+                localStorage.removeItem('winlaneUser');
+                alert('ออกจากระบบสำเร็จ');
+                window.location.href = 'login.html';
+            });
+        });
+        function copyToClipboard(elementId) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert( (elementId === 'username' ? 'Username' : 'Password') + ' copied!');
+            });
+        }
+    </script>
+</body>
+</html>
